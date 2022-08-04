@@ -1,4 +1,4 @@
-package ru.kata.spring.boot_security.demo.configs;
+package ru.kata.spring.boot_security.demo.init;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -9,12 +9,12 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 import javax.annotation.PostConstruct;
 
 @Component
-public class UserStart {
+public class InitUser {
 
     private final UserService userService;
 
     @Autowired
-    public UserStart(UserService userService) {
+    public InitUser(UserService userService) {
         this.userService = userService;
     }
 

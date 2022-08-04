@@ -37,13 +37,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
+
     public List<User> index() {
         return userRepository.findAll();
     }
 
     @Override
-    @Transactional
+
     public User showUserById(Long id) {
         return userRepository.getById(id);
     }
@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
+
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
