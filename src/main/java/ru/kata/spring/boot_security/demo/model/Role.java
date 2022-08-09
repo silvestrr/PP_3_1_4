@@ -5,6 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -66,4 +67,6 @@ public class Role implements GrantedAuthority {
     public String toString() {
         return userRole;
     }
+
+
 }

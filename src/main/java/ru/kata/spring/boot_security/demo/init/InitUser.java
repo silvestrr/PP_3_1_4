@@ -1,8 +1,6 @@
-package ru.kata.spring.boot_security.demo.start;
+package ru.kata.spring.boot_security.demo.init;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
@@ -15,12 +13,12 @@ import java.util.Set;
 
 
 @Component
-public class Start {
+public class InitUser {
     private final UserService userService;
     private final RoleService roleService;
 
     @Autowired
-    public Start(UserService userService, RoleService roleService) {
+    public InitUser(UserService userService, RoleService roleService) {
         this.userService = userService;
         this.roleService = roleService;
     }

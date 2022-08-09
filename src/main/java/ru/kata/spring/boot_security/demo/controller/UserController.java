@@ -13,7 +13,7 @@ import ru.kata.spring.boot_security.demo.model.User;
 public class UserController {
 
     @GetMapping(value = "login")
-    public String loginPage() {
+    public String getLogin() {
         return "login";
     }
 
