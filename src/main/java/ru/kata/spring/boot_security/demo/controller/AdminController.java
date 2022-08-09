@@ -11,7 +11,6 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 
 import java.util.stream.Collectors;
 
-
 @Controller
 @RequestMapping
 public class AdminController {
@@ -29,21 +28,21 @@ public class AdminController {
         model.addAttribute("users", userService.getAllUsers());
         model.addAttribute("user", user);
         model.addAttribute("roles", roleService.getAllRoles());
-        return "admin";
+        return "admin/adminPage";
     }
 
     @GetMapping("/add")
     public String newUserPage(@AuthenticationPrincipal User user, Model model) {
         model.addAttribute("user", user);
         model.addAttribute("roles", roleService.getAllRoles());
-        return "user";
+        return "admin/newUser";
     }
 
     @PostMapping("/new")
     public String createUser(@ModelAttribute("user") User user) {
         getUserRoles(user);
         userService.saveUser(user);
-        return "admin";
+        return "redirect:/admin";
     }
 
     @PutMapping("/{id}/update")
@@ -51,13 +50,13 @@ public class AdminController {
         model.addAttribute("roles", roleService.getAllRoles());
         getUserRoles(user);
         userService.updateUser(user);
-        return "admin";
+        return "redirect:/admin";
     }
 
     @DeleteMapping("/{id}/delete")
     public String deleteUser(@PathVariable("id") long id) {
         userService.deleteUser(id);
-        return "admin";
+        return "redirect:/admin";
     }
 
     private void getUserRoles(User user) {
