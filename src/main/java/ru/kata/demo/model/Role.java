@@ -3,66 +3,68 @@ package ru.kata.demo.model;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.Objects;
 
 @Entity
-@Table(name = "role")
-public class Role  implements GrantedAuthority {
-
+@Table(name = "roles")
+public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "role_id")
     private Long id;
-
-    @Column(name = "name", unique = true)
-    private String name;
 
     @Column
     private String role;
-    @Transient
-    @ManyToMany(mappedBy = "roles")
-    private Set<User> users;
 
+
+    public Role(String admin) {
+    }
     public Role() {
     }
-    public Role(Long id, String name) {
+    public Role(Long id, String role) {
         this.id = id;
-        this.name = name;
+        this.role = role;
     }
 
     public Long getId() {
         return id;
     }
-    public String getRole() {
+
+    @Override
+    public String getAuthority() {
         return role;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getRole() {
+        return role;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override
-    public String getAuthority() {
-        return getName();
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Role role1 = (Role) o;
+        return Objects.equals(id, role1.id) && Objects.equals(role, role1.role);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, role);
     }
 
     @Override
     public String toString() {
-        return name;
-
+        return "Role{" +
+                "id=" + id +
+                ", role='" + role + '\'' +
+                '}';
     }
 }

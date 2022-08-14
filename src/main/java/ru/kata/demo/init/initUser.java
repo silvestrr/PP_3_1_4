@@ -9,7 +9,6 @@ import ru.kata.demo.model.Role;
 import ru.kata.demo.model.User;
 import ru.kata.demo.repository.UserRepository;
 
-
 import java.util.HashSet;
 import java.util.Set;
 

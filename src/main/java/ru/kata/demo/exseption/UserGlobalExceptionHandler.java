@@ -1,4 +1,4 @@
-package ru.kata.demo.Exseption;
+package ru.kata.demo.exseption;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

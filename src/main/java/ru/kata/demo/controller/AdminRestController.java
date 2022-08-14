@@ -7,11 +7,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import ru.kata.demo.Exseption.NoUserByIdException;
-import ru.kata.demo.Exseption.UserIncorrectId;
+
+import ru.kata.demo.exseption.NoUserByIdException;
+
+import ru.kata.demo.exseption.UserIncorrectId;
 import ru.kata.demo.model.Role;
 import ru.kata.demo.model.User;
 import ru.kata.demo.service.UserService;
+
 
 import javax.validation.Valid;
 import java.util.List;
@@ -28,7 +31,6 @@ public class AdminRestController {
     public AdminRestController(UserService userService) {
         this.userService = userService;
     }
-
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(12);
 
@@ -109,5 +111,4 @@ public class AdminRestController {
     }
 
 }
-
 

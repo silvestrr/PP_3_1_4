@@ -11,6 +11,7 @@ import ru.kata.demo.repository.RoleRepository;
 import ru.kata.demo.repository.UserRepository;
 
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Set;
 

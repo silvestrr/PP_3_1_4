@@ -1,5 +1,4 @@
-package ru.kata.demo.Exseption;
-
+package ru.kata.demo.exseption;
 
 public class UserIncorrectId {
 
