@@ -5,8 +5,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.kata.demo.models.Role;
-import ru.kata.demo.models.User;
+import ru.kata.demo.model.Role;
+import ru.kata.demo.model.User;
 import ru.kata.demo.repository.RoleRepository;
 import ru.kata.demo.repository.UserRepository;
 

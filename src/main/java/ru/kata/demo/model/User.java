@@ -1,4 +1,4 @@
-package ru.kata.demo.models;
+package ru.kata.demo.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
+
 
 @Entity
 @Table(name = "users")

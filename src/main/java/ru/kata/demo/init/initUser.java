@@ -5,8 +5,8 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-import ru.kata.demo.models.Role;
-import ru.kata.demo.models.User;
+import ru.kata.demo.model.Role;
+import ru.kata.demo.model.User;
 import ru.kata.demo.repository.UserRepository;
 
 
