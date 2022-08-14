@@ -8,7 +8,7 @@ import ru.kata.demo.model.User;
 
 
 @Controller
-public class AdminController {
+public class UserController {
 
     @GetMapping("/")
     public String toLogin() {
