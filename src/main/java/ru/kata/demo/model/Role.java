@@ -16,11 +16,12 @@ public class Role implements GrantedAuthority {
     @Column
     private String role;
 
+    public Role() {
+    }
 
     public Role(String admin) {
     }
-    public Role() {
-    }
+
     public Role(Long id, String role) {
         this.id = id;
         this.role = role;
