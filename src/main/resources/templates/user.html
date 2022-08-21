@@ -30,18 +30,22 @@
     <a class="nav-link" href="/logout">Logout</a>
 </nav>
 
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-2 p-0 mt-2">
             <ul class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <div sec:authorize="hasAuthority('ADMIN')">
-                    <li class="nav-item">
-                    </li>
-                </div>
                 <li class="nav-item">
-                    <a class="nav-link active" id="v-pills-user-tab" data-toggle="pill" href="#v-pills-user" role="tab"
-                       aria-controls="v-pills-user" aria-selected="false">
-                        <div sec:authorize="hasAnyAuthority('ADMIN', 'USER')">
+                    <a class="nav-link" href="/admin">
+                        <div sec:authorize="hasAnyAuthority('USER', 'ADMIN')">
+                            Admin
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" id="v-pills-admin-tab" data-toggle="pill" href="#v-pills-admin" role="tab"
+                       aria-controls="v-pills-admin" aria-selected="true">
+                        <div sec:authorize="hasAuthority('ADMIN')">
                             User
                         </div>
                     </a>

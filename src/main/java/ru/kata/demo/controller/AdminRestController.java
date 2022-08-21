@@ -74,7 +74,7 @@ public class AdminRestController {
 
     @PatchMapping("/edit/{id}")
     public ResponseEntity<UserIncorrectId> updateUser(@PathVariable("id") long id,
-                                                      @Valid @RequestBody User user,
+                                                      @Valid User user,
                                                       BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             String error = getErrorsFromBindingResult(bindingResult);
