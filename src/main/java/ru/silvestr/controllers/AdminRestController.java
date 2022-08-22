@@ -1,7 +1,7 @@
 package ru.silvestr.controllers;
 
-import ru.silvestr.exseption.UserIncorrectId;
-import ru.silvestr.exseption.NoUserByIdException;
+import ru.silvestr.exceptions.UserIncorrectId;
+import ru.silvestr.exceptions.NoUserByIdException;
 import ru.silvestr.models.User;
 import ru.silvestr.service.RoleService;
 import ru.silvestr.service.UserService;
