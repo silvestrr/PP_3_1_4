@@ -1,4 +1,4 @@
-package ru.silvestr.security;
+package ru.silvestr.configs;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

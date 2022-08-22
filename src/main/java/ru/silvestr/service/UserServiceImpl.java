@@ -2,8 +2,8 @@ package ru.silvestr.service;
 
 import ru.silvestr.repository.RoleRepository;
 import ru.silvestr.repository.UserRepository;
-import ru.silvestr.model.Role;
-import ru.silvestr.model.User;
+import ru.silvestr.models.Role;
+import ru.silvestr.models.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

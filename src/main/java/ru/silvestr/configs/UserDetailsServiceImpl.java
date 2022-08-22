@@ -1,4 +1,4 @@
-package ru.silvestr.security;
+package ru.silvestr.configs;
 
 import ru.silvestr.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package ru.silvestr.controller;
+package ru.silvestr.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -8,7 +8,7 @@ public class UserController {
 
     @GetMapping("/")
     public String mainPage() {
-        return "index";
+        return "admin";
     }
 
 }

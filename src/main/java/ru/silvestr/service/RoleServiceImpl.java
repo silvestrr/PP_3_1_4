@@ -1,7 +1,7 @@
 package ru.silvestr.service;
 
 import ru.silvestr.repository.RoleRepository;
-import ru.silvestr.model.Role;
+import ru.silvestr.models.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;

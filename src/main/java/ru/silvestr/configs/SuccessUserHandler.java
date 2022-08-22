@@ -1,4 +1,4 @@
-package ru.silvestr.security;
+package ru.silvestr.configs;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;

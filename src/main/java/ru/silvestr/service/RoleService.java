@@ -1,6 +1,6 @@
 package ru.silvestr.service;
 
-import ru.silvestr.model.Role;
+import ru.silvestr.models.Role;
 import java.util.List;
 import java.util.Set;
 

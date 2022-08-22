@@ -1,6 +1,6 @@
 package ru.silvestr.service;
 
-import ru.silvestr.model.User;
+import ru.silvestr.models.User;
 import java.util.List;
 
 public interface UserService {

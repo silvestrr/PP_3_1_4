@@ -5,14 +5,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope("prototype")
-public class ExceptionInfo {
+public class UserIncorrectId {
 
     private String info;
 
-    public ExceptionInfo() {
+    public UserIncorrectId() {
     }
 
-    public ExceptionInfo(String info) {
+    public UserIncorrectId(String info) {
         this.info = info;
     }
 

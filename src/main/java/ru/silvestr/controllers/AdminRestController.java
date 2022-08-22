@@ -1,8 +1,8 @@
-package ru.silvestr.controller;
+package ru.silvestr.controllers;
 
-import ru.silvestr.exseption.ExceptionInfo;
-import ru.silvestr.exseption.UserUsernameExistException;
-import ru.silvestr.model.User;
+import ru.silvestr.exseption.UserIncorrectId;
+import ru.silvestr.exseption.NoUserByIdException;
+import ru.silvestr.models.User;
 import ru.silvestr.service.RoleService;
 import ru.silvestr.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,23 +33,23 @@ public class AdminRestController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<ExceptionInfo> createUser(@Valid @RequestBody User user, BindingResult bindingResult) {
+    public ResponseEntity<UserIncorrectId> createUser(@Valid @RequestBody User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             String error = getErrorsFromBindingResult(bindingResult);
-            return new ResponseEntity<>(new ExceptionInfo(error), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new UserIncorrectId(error), HttpStatus.BAD_REQUEST);
         }
         try {
             userService.save(user);
             return new ResponseEntity<>(HttpStatus.OK);
-        }catch (UserUsernameExistException u) {
-            throw new UserUsernameExistException("User with username exist");
+        }catch (NoUserByIdException u) {
+            throw new NoUserByIdException("User with username exist");
         }
     }
 
     @DeleteMapping("/users/{id}")
-    public ResponseEntity<ExceptionInfo> pageDelete(@PathVariable("id") long id) {
+    public ResponseEntity<UserIncorrectId> pageDelete(@PathVariable("id") long id) {
         userService.deleteById(id);
-        return new ResponseEntity<>(new ExceptionInfo("User deleted"), HttpStatus.OK);
+        return new ResponseEntity<>(new UserIncorrectId("User deleted"), HttpStatus.OK);
     }
 
     @GetMapping("users/{id}")
@@ -65,12 +65,12 @@ public class AdminRestController {
     }
 
     @PutMapping("/users/{id}")
-    public ResponseEntity<ExceptionInfo> pageEdit(@PathVariable("id") long id,
-                         @Valid @RequestBody User user,
-                         BindingResult bindingResult) {
+    public ResponseEntity<UserIncorrectId> pageEdit(@PathVariable("id") long id,
+                                                    @Valid @RequestBody User user,
+                                                    BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             String error = getErrorsFromBindingResult(bindingResult);
-            return new ResponseEntity<>(new ExceptionInfo(error), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new UserIncorrectId(error), HttpStatus.BAD_REQUEST);
         }
         try {
             String oldPassword = userService.getById(id).getPassword();
@@ -83,8 +83,8 @@ public class AdminRestController {
                 userService.save(user);
             }
             return new ResponseEntity<>(HttpStatus.OK);
-        }catch (UserUsernameExistException u) {
-            throw new UserUsernameExistException("User with username exist");
+        }catch (NoUserByIdException u) {
+            throw new NoUserByIdException("User with username exist");
         }
     }
 
