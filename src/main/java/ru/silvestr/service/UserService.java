@@ -1,16 +1,23 @@
 package ru.silvestr.service;
 
-import ru.silvestr.models.User;
+import ru.silvestr.model.User;
+
 import java.util.List;
 
 public interface UserService {
 
-    List<User> findAll ();
+    List<User> findAll();
+
     User getById(long id);
+
     void save(User user);
+
     void deleteById(long id);
+
     User findByUsername(String username);
-    void addDefaultUser();
+
+    //    void addDefaultUser();
     void update(User user);
+
     User passwordCoder(User user);
 }

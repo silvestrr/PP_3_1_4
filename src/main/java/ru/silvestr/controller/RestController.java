@@ -1,8 +1,8 @@
-package ru.silvestr.controllers;
+package ru.silvestr.controller;
 
-import ru.silvestr.exceptions.UserIncorrectId;
-import ru.silvestr.exceptions.NoUserByIdException;
-import ru.silvestr.models.User;
+import ru.silvestr.exception.UserIncorrectId;
+import ru.silvestr.exception.NoUserByIdException;
+import ru.silvestr.model.User;
 import ru.silvestr.service.RoleService;
 import ru.silvestr.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,25 +11,26 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RestController
+@org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api")
-public class AdminRestController {
+public class RestController {
 
     private final UserService userService;
 
     @Autowired
-    public AdminRestController(RoleService roleService, UserService userService) {
+    public RestController(RoleService roleService, UserService userService) {
         this.userService = userService;
     }
 
     @GetMapping("/users")
     public ResponseEntity<List<User>> getUsers() {
-        return new ResponseEntity<>(userService.findAll(),HttpStatus.OK);
+        return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
     }
 
     @PostMapping("/users")
@@ -41,7 +42,7 @@ public class AdminRestController {
         try {
             userService.save(user);
             return new ResponseEntity<>(HttpStatus.OK);
-        }catch (NoUserByIdException u) {
+        } catch (NoUserByIdException u) {
             throw new NoUserByIdException("User with username exist");
         }
     }
@@ -53,15 +54,15 @@ public class AdminRestController {
     }
 
     @GetMapping("users/{id}")
-    public ResponseEntity<User> getUser (@PathVariable("id") long id) {
+    public ResponseEntity<User> getUser(@PathVariable("id") long id) {
         User user = userService.getById(id);
-        return new ResponseEntity<>(user,HttpStatus.OK);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @GetMapping("/user")
-    public ResponseEntity<User> getUserByUsername (Principal principal) {
+    public ResponseEntity<User> getUserByUsername(Principal principal) {
         User user = userService.findByUsername(principal.getName());
-        return new ResponseEntity<>(user,HttpStatus.OK);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @PutMapping("/users/{id}")
@@ -83,7 +84,7 @@ public class AdminRestController {
                 userService.save(user);
             }
             return new ResponseEntity<>(HttpStatus.OK);
-        }catch (NoUserByIdException u) {
+        } catch (NoUserByIdException u) {
             throw new NoUserByIdException("User with username exist");
         }
     }

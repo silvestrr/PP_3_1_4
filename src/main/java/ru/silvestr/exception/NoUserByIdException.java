@@ -1,4 +1,4 @@
-package ru.silvestr.exceptions;
+package ru.silvestr.exception;
 
 import org.springframework.dao.DataIntegrityViolationException;
 

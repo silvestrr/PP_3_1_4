@@ -2,11 +2,12 @@ package ru.silvestr.service;
 
 import ru.silvestr.repository.RoleRepository;
 import ru.silvestr.repository.UserRepository;
-import ru.silvestr.models.Role;
-import ru.silvestr.models.User;
+import ru.silvestr.model.Role;
+import ru.silvestr.model.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import javax.annotation.PostConstruct;
 import java.util.HashSet;
 import java.util.List;
@@ -42,7 +43,7 @@ public class UserServiceImpl implements UserService {
     public User getById(long id) {
         User user = null;
         Optional<User> optional = userRepository.findById(id);
-        if(optional.isPresent()) {
+        if (optional.isPresent()) {
             user = optional.get();
         }
         return user;
@@ -55,7 +56,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void update(User user) {
-        userRepository.save(user);
+        userRepository.saveAndFlush(user);
     }
 
     @Override
@@ -68,18 +69,18 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(username);
     }
 
-    @Override
-    @PostConstruct
-    public void addDefaultUser() {
-        Set<Role> roles1 = new HashSet<>();
-        roles1.add(roleRepository.findById(1L).orElse(null));
-        Set<Role> roles2 = new HashSet<>();
-        roles2.add(roleRepository.findById(1L).orElse(null));
-        roles2.add(roleRepository.findById(2L).orElse(null));
-        User user1 = new User("User","Userov",(byte) 20, "user@mail.com", "user","user",roles1);
-        User user2 = new User("Admin","Adminov",(byte) 21, "admin@mail.com", "admin","admin",roles2);
-        save(user1);
-        save(user2);
-        }
+//    @Override
+//    @PostConstruct
+//    public void addDefaultUser() {
+//        Set<Role> roles1 = new HashSet<>();
+//        roles1.add(roleRepository.findById(1L).orElse(null));
+//        Set<Role> roles2 = new HashSet<>();
+//        roles2.add(roleRepository.findById(1L).orElse(null));
+//        roles2.add(roleRepository.findById(2L).orElse(null));
+//        User user1 = new User("Steve","Jobs",(byte) 25, "user@mail.com", "user","12345",roles1);
+//        User user2 = new User("Garry","Potter",(byte) 30, "admin@mail.com", "admin","admin",roles2);
+//        save(user1);
+//        save(user2);
+//        }
 }
 

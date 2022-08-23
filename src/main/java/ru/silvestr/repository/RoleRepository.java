@@ -1,6 +1,6 @@
 package ru.silvestr.repository;
 
-import ru.silvestr.models.Role;
+import ru.silvestr.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

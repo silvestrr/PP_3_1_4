@@ -1,16 +1,17 @@
 package ru.silvestr.service;
 
 import ru.silvestr.repository.RoleRepository;
-import ru.silvestr.models.Role;
+import ru.silvestr.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import javax.annotation.PostConstruct;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Service
-public class RoleServiceImpl implements RoleService{
+public class RoleServiceImpl implements RoleService {
 
     private final RoleRepository roleRepository;
 
@@ -24,15 +25,15 @@ public class RoleServiceImpl implements RoleService{
         return roleRepository.findAll();
     }
 
-    @Override
-    @PostConstruct
-    public void addDefaultRole() {
-        roleRepository.save(new Role("ROLE_USER"));
-        roleRepository.save(new Role("ROLE_ADMIN"));
-    }
+//    @Override
+//    @PostConstruct
+//    public void addDefaultRole() {
+//        roleRepository.save(new Role("ROLE_USER"));
+//        roleRepository.save(new Role("ROLE_ADMIN"));
+//    }
 
     @Override
     public Set<Role> findByIdRoles(List<Long> roles) {
-      return new HashSet<>(roleRepository.findAllById(roles));
+        return new HashSet<>(roleRepository.findAllById(roles));
     }
 }
