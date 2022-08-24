@@ -28,11 +28,6 @@ public class AdminController {
         this.userService = userService;
     }
 
-    @GetMapping("/users")
-    public ResponseEntity<List<User>> getUsers() {
-        return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
-    }
-
     @PostMapping("/users")
     public ResponseEntity<UserIncorrectId> createUser(@Valid @RequestBody User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -53,15 +48,15 @@ public class AdminController {
         return new ResponseEntity<>(new UserIncorrectId("User deleted"), HttpStatus.OK);
     }
 
+
+    @GetMapping("/users")
+    public ResponseEntity<List<User>> getUsers() {
+        return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
+    }
+
     @GetMapping("users/{id}")
     public ResponseEntity<User> getUser(@PathVariable("id") long id) {
         User user = userService.getById(id);
-        return new ResponseEntity<>(user, HttpStatus.OK);
-    }
-
-    @GetMapping("/user")
-    public ResponseEntity<User> getUserByUsername(Principal principal) {
-        User user = userService.findByUsername(principal.getName());
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 

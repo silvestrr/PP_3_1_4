@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Transactional
+@Transactional(readOnly = true)
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
 
@@ -47,12 +47,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
         return user;
     }
-
+    @Transactional
     @Override
     public void save(User user) {
         userRepository.save(passwordCoder(user));
     }
-
+    @Transactional
     @Override
     public void update(long id, User user) {
         User user1 = userRepository.findById(id).get();
@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user1.setEmail(user.getEmail());
         userRepository.save(user1);
     }
-
+    @Transactional
     @Override
     public void deleteById(long id) {
         userRepository.deleteById(id);

@@ -1,5 +1,6 @@
 package ru.silvestr.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -8,20 +9,24 @@ import ru.silvestr.model.User;
 import ru.silvestr.service.UserServiceImpl;
 
 import java.security.Principal;
+import java.util.List;
 
-@Controller
+
+@RestController
+@RequestMapping("/api")
 public class UserController {
 
     private final UserServiceImpl userService;
 
+    @Autowired
     public UserController(UserServiceImpl userService) {
         this.userService = userService;
     }
 
-    @GetMapping("/")
-    public String showUser() {
-        return "admin";
+    @GetMapping("/user")
+    public ResponseEntity<User> getUserByUsername(Principal principal) {
+        User user = userService.findByUsername(principal.getName());
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
-
 
 }
