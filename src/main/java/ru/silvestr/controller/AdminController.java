@@ -19,12 +19,12 @@ import java.util.stream.Collectors;
 
 @org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api")
-public class RestController {
+public class AdminController {
 
     private final UserService userService;
 
     @Autowired
-    public RestController(RoleService roleService, UserService userService) {
+    public AdminController(RoleService roleService, UserService userService) {
         this.userService = userService;
     }
 
@@ -66,27 +66,10 @@ public class RestController {
     }
 
     @PutMapping("/users/{id}")
-    public ResponseEntity<UserIncorrectId> pageEdit(@PathVariable("id") long id,
-                                                    @Valid @RequestBody User user,
-                                                    BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            String error = getErrorsFromBindingResult(bindingResult);
-            return new ResponseEntity<>(new UserIncorrectId(error), HttpStatus.BAD_REQUEST);
-        }
-        try {
-            String oldPassword = userService.getById(id).getPassword();
-            if (oldPassword.equals(user.getPassword())) {
-                System.out.println("TRUE");
-                user.setPassword(oldPassword);
-                userService.update(user);
-            } else {
-                System.out.println("FALSE");
-                userService.save(user);
-            }
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (NoUserByIdException u) {
-            throw new NoUserByIdException("User with username exist");
-        }
+    public ResponseEntity<User> updateUser(@PathVariable("id") long id,
+                                           @Valid @RequestBody User user) {
+        userService.update(id, user);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     private String getErrorsFromBindingResult(BindingResult bindingResult) {

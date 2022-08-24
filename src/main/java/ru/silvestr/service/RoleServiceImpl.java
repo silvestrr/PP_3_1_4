@@ -25,13 +25,6 @@ public class RoleServiceImpl implements RoleService {
         return roleRepository.findAll();
     }
 
-//    @Override
-//    @PostConstruct
-//    public void addDefaultRole() {
-//        roleRepository.save(new Role("ROLE_USER"));
-//        roleRepository.save(new Role("ROLE_ADMIN"));
-//    }
-
     @Override
     public Set<Role> findByIdRoles(List<Long> roles) {
         return new HashSet<>(roleRepository.findAllById(roles));

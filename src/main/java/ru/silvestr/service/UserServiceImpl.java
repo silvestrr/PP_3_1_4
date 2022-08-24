@@ -1,22 +1,21 @@
 package ru.silvestr.service;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import ru.silvestr.repository.RoleRepository;
 import ru.silvestr.repository.UserRepository;
-import ru.silvestr.model.Role;
 import ru.silvestr.model.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.PostConstruct;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Transactional
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
@@ -55,8 +54,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void update(User user) {
-        userRepository.saveAndFlush(user);
+    public void update(long id, User user) {
+        User user1 = userRepository.findById(id).get();
+        user1.setUsername(user.getUsername());
+        user1.setPassword(user.getPassword());
+        user1.setName(user.getName());
+        user1.setSurname(user.getSurname());
+        user1.setAge(user.getAge());
+        user1.setEmail(user.getEmail());
+        userRepository.save(user1);
     }
 
     @Override
@@ -69,18 +75,15 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(username);
     }
 
-//    @Override
-//    @PostConstruct
-//    public void addDefaultUser() {
-//        Set<Role> roles1 = new HashSet<>();
-//        roles1.add(roleRepository.findById(1L).orElse(null));
-//        Set<Role> roles2 = new HashSet<>();
-//        roles2.add(roleRepository.findById(1L).orElse(null));
-//        roles2.add(roleRepository.findById(2L).orElse(null));
-//        User user1 = new User("Steve","Jobs",(byte) 25, "user@mail.com", "user","12345",roles1);
-//        User user2 = new User("Garry","Potter",(byte) 30, "admin@mail.com", "admin","admin",roles2);
-//        save(user1);
-//        save(user2);
-//        }
+    @Override
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        try {
+            return userRepository.findByUsername(s);
+        } catch (UsernameNotFoundException u) {
+            throw new UsernameNotFoundException("user not found");
+        }
+    }
+
+
 }
 
